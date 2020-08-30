@@ -1,0 +1,5 @@
+python export_inference_graph.py \
+--input_type image_tensor \
+--pipeline_config_path /home/tianyiliu/Documents/workspace/gaming/ssd_mobilenets-game/models/ssd_mobilenet_v1_pets.config \
+--trained_checkpoint_prefix /home/tianyiliu/Documents/workspace/gaming/ssd_mobilenets-game/checkpoints/model.ckpt-15425 \
+--output_directory /home/tianyiliu/Documents/workspace/gaming/ssd_mobilenets-game/result/
