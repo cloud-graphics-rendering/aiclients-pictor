@@ -1,0 +1,4 @@
+python object_detection/train.py \
+--logtostderr \
+--pipeline_config_path=/home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/bench-datasets/redeclipse/train/reference/ssd_mobilenet_v1_0ad.config \
+--train_dir=/home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/bench-datasets/redeclipse/train/results

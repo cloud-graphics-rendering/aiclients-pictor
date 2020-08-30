@@ -1,0 +1,4 @@
+python3 object_detection/train.py \
+--logtostderr \
+--pipeline_config_path=/media/lty/newspace/BenchmarkFrameWork/data-sets/redeclipse/ssd_mobilenet_v1_inmind.config \
+--train_dir=/media/lty/newspace/BenchmarkFrameWork/data-sets/redeclipse/training-result/

@@ -1,0 +1,5 @@
+python object_detection/export_inference_graph.py \
+--input_type image_tensor \
+--pipeline_config_path /home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/modelData/supertuxkart/ssd_mobilenet_v1_supertuxkart.config \
+--trained_checkpoint_prefix /home/tianyiliu/Documents/workspace/gaming/myprojects/training-results/supertuxkart/results-14/model.ckpt-156785 \
+--output_directory /home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/modelData/supertuxkart/models-14/

@@ -1,0 +1,54 @@
+# How to install all the benchmarks on Ubuntu16.04 without compiling manully? 
+  This part is about installing all the benchmarks from binary. If you would like to build it by hand, please look at HERE.
+  
+  For Supertuxkart, you can download from the website: https://supertuxkart.net/Download
+  You should download the linux version and untar the file and run the script to start the game.
+  
+
+
+# How to build each benchmark?
+
+  Build all benchmarks in one step
+  How to build SuperTuxKart
+  How to build 0ad
+  How to build redeclipse
+  How to build 
+
+
+## How to build SuperTuxKart?
+
+Reference: https://github.com/supertuxkart/stk-code/blob/master/INSTALL.md
+
+1. Download source file and install dependence packages
+  $ git clone https://github.com/supertuxkart/stk-code stk-code
+  $ svn co https://svn.code.sf.net/p/supertuxkart/code/stk-assets stk-assets
+  $ sudo apt-get install build-essential cmake libbluetooth-dev \
+                       libcurl4-openssl-dev libenet-dev libfreetype6-dev libfribidi-dev \
+                       libgl1-mesa-dev libglew-dev libjpeg-dev libogg-dev libopenal-dev libpng-dev \
+                       libssl-dev libvorbis-dev libxrandr-dev libx11-dev pkg-config zlib1g-dev
+
+2. To compile SuperTuxKart, run the following commands inside stk-code directory:
+  $ mkdir cmake_build
+  $ cd cmake_build
+  $ cmake ..
+  $ make -j4
+   
+Further Options:
+  To create a debug version of STK, run:
+  $ cmake .. -DCMAKE_BUILD_TYPE=Debug
+   
+You can install your build system-wide:
+  $ sudo make install
+   
+The default install location is /usr/local, i.e. the data files will be written to /usr/local/share/games/supertuxkart, 
+the executable will be copied to /usr/local/bin. To change the default installation location, 
+specify CMAKE_INSTALL_PREFIX when running cmake, e.g.: cmake .. -DCMAKE_INSTALL_PREFIX=/opt/stk
+
+Trouble Shooting:
+if you build supertuxkart in different position, you may can not find the path to data. You need to set the SUPERTUXKART_DATA envirionment viriable to the "data" in source code directory.
+
+## How to build 0ad?
+
+
+
+

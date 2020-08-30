@@ -1,0 +1,5 @@
+python object_detection/export_inference_graph.py \
+--input_type image_tensor \
+--pipeline_config_path /home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/bench-datasets/0ad/0ad-train-results/reference/ssd_mobilenet_v1_0ad.config \
+--trained_checkpoint_prefix /home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/bench-datasets/0ad/0ad-train-results19/model.ckpt-58413 \
+--output_directory /home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/bench-datasets/0ad/0ad-train-results19/model19/

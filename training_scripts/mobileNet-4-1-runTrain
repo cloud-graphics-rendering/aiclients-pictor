@@ -1,0 +1,4 @@
+python object_detection/train.py \
+--logtostderr \
+--pipeline_config_path=/home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/modelData/supertuxkart/ssd_mobilenet_v1_supertuxkart.config \
+--train_dir=/home/tianyiliu/Documents/workspace/gaming/myprojects/training-results/supertuxkart/results-14

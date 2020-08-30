@@ -1,0 +1,4 @@
+python object_detection/eval.py --logtostderr \
+--pipeline_config_path /media/lty/newspace/BenchmarkFrameWork/data-sets/inmind/ssd_mobilenet_v1_inmind.config \
+--checkpoint_dir=/media/lty/newspace/BenchmarkFrameWork/data-sets/inmind/training-model/ \
+--eval_dir=/media/lty/newspace/BenchmarkFrameWork/data-sets/inmind/evaluation/

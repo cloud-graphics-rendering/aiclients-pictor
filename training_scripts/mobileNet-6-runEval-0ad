@@ -1,0 +1,4 @@
+python object_detection/eval.py --logtostderr \
+--pipeline_config_path /home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/bench-datasets/0ad/0ad-train-results/reference/ssd_mobilenet_v1_0ad.config \
+--checkpoint_dir=/home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/bench-datasets/0ad/0ad-train-results/model/ \
+--eval_dir=/home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/bench-datasets/0ad/0ad-train-results/evaluation/

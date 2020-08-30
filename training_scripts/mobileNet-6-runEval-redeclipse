@@ -1,0 +1,6 @@
+#tensorboard --logdir=/home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/bench-datasets/redeclipse/train/evaluation
+
+python object_detection/eval.py --logtostderr \
+--pipeline_config_path /home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/bench-datasets/redeclipse/train/reference/ssd_mobilenet_v1_0ad.config \
+--checkpoint_dir=/home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/bench-datasets/redeclipse/train/model/ \
+--eval_dir=/home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/bench-datasets/redeclipse/train/evaluation/

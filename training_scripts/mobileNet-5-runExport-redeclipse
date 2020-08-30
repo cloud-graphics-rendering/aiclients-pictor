@@ -1,0 +1,7 @@
+#!/bin/bash
+TRAIN_PATH=/media/lty/newspace/BenchmarkFrameWork/data-sets/redeclipse
+python object_detection/export_inference_graph.py \
+--input_type image_tensor \
+--pipeline_config_path=$TRAIN_PATH/ssd_mobilenet_v1_inmind.config \
+--trained_checkpoint_prefix $TRAIN_PATH/training-result/model.ckpt-20984 \
+--output_directory $TRAIN_PATH/model/

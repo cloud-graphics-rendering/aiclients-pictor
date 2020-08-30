@@ -1,0 +1,5 @@
+python object_detection/export_inference_graph.py \
+--input_type image_tensor \
+--pipeline_config_path /media/lty/newspace/BenchmarkFrameWork/data-sets/nasaweb/ssd_mobilenet_v1_nasaweb.config \
+--trained_checkpoint_prefix /media/lty/newspace/BenchmarkFrameWork/data-sets/nasaweb/training-result/model.ckpt-71726 \
+--output_directory /media/lty/newspace/BenchmarkFrameWork/data-sets/nasaweb/training-model/

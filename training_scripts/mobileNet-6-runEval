@@ -1,0 +1,6 @@
+#tensorboard --logdir=/home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/bench-datasets/redeclipse/train/evaluation
+
+python object_detection/eval.py --logtostderr \
+--pipeline_config_path=/home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/modelData/supertuxkart/ssd_mobilenet_v1_supertuxkart.config \
+--checkpoint_dir=/home/tianyiliu/Documents/workspace/gaming/myprojects/renderBench/modelData/supertuxkart/models-13/ \
+--eval_dir=/home/tianyiliu/Documents/workspace/gaming/myprojects/evaluation/supertuxkart/evaluation-13/

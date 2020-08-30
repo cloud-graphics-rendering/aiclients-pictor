@@ -1,0 +1,59 @@
+The repository saves scripts for training games.
+    
+    Directory Description:
+
+    lableImg/ saves QT tool for labeling dataset, and the dataset will be in xml format.
+    object_detection/ saves scripts from tensorflow projects and we make some modification to suit our new project.
+
+    Scripts Descritption:
+
+    lstm* 
+        These fils are used to train LSTM network. Our AI makes decision via LSTM.
+    mobileNet* 
+        These files are used to train mobileNet to do object detection.
+
+You can use either python2 or python3 to run the following scripts:
+
+AI-play-SuperTuxKart.py
+AI-play-0ad.py
+AI-play-redeclipse.py
+
+How to set up enviroment at server side and client side?
+For server side:
+1. launch a VNC session: 5901
+   /opt/TurboVNC/bin/vncserver -3dwm -measure
+
+For client side(VNC setups):
+1. connect to VNC session 5901
+   /opt/TurboVNC/bin/vncviewer ip:5901
+   
+2. press F8, set the resolution to be 1280x960. Uncheck "Full-screen mode" and uncheck "Show toolbar by default".
+   Save changes, close VNC window and reconnect to the 5901 session. Allign the VNC window to left up cornner of the desktop.
+
+3. Open a terminal in VNC and align it to left up corner of the VNC window. Enter into the directory where you saves commands to
+   start each graphic intensive applications.
+   $ cd xxx/graphic-intensive-apps/
+
+For client side(local python setups):
+How to set up the python envirionment before you run the scripts? On a new ubuntu16.04 machine, you need the following 4 steps.
+1. Open a terminal on your local machine, and you need switching to root mode:
+
+    $ sudo -i
+    
+2. Go to the scripts directory:
+
+    ~# cd xxx/bench-train-games
+    
+3. Install python modules with pip:
+    
+    ~# pip install tensorflow opencv-python mss keyboard pyuserinput matplotlib
+
+ATTENTION: 
+Before running each application by scripts, you should confirm that you can run each program in GRBench successfully
+and maximize the GUI.
+
+How to run AUTOMATICLLY?
+    
+    ~# python AI-paly-xxx.py
+   
+   If you still lack python modules, just install them with pip command.

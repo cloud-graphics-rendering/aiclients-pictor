@@ -1,0 +1,4 @@
+python3 object_detection/train.py \
+--logtostderr \
+--pipeline_config_path=/media/lty/newspace/BenchmarkFrameWork/data-sets/supertuxkart/reference/ssd_mobilenet_v1.config \
+--train_dir=/media/lty/newspace/BenchmarkFrameWork/data-sets/supertuxkart/training-result/

@@ -1,0 +1,4 @@
+python object_detection/train.py \
+--logtostderr \
+--pipeline_config_path=/media/lty/newspace/BenchmarkFrameWork/data-sets/nasaweb/ssd_mobilenet_v1_nasaweb.config \
+--train_dir=/media/lty/newspace/BenchmarkFrameWork/data-sets/nasaweb/training-result/

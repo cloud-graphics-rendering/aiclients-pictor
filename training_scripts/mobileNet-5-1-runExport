@@ -1,0 +1,5 @@
+python object_detection/export_inference_graph.py \
+--input_type image_tensor \
+--pipeline_config_path /home/tianyiliu/Downloads/ssd_mobilenet_v1_coco_2018_01_28/pipeline.config \
+--trained_checkpoint_prefix /home/tianyiliu/Downloads/ssd_mobilenet_v1_coco_2018_01_28/results-1/model.ckpt-0 \
+--output_directory /home/tianyiliu/Downloads/ssd_mobilenet_v1_coco_2018_01_28/models-1/

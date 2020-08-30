@@ -1,0 +1,4 @@
+python object_detection/train.py \
+--logtostderr \
+--pipeline_config_path=/home/tianyiliu/Downloads/ssdlite_mobilenet_v2_coco_2018_05_09/pipeline.config \
+--train_dir=/home/tianyiliu/Downloads/ssdlite_mobilenet_v2_coco_2018_05_09/results-1/
