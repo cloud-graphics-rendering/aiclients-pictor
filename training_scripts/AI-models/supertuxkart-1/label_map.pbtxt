@@ -1,0 +1,52 @@
+item {
+  id: 1
+  name: 'profile'
+}
+item {
+  id: 2
+  name: 'rider'
+}
+item {
+  id: 3
+  name: 'house'
+}
+item {
+  id: 4
+  name: 'shed'
+}
+item {
+  id: 5
+  name: 'coco-tree'
+}
+item {
+  id: 6
+  name: 'cactus'
+}
+item {
+  id: 7
+  name: 'tree'
+}
+item {
+  id: 8
+  name: 'trap'
+}
+item {
+  id: 9
+  name: 'sign'
+}
+item {
+  id: 10
+  name: 'wall'
+}
+item {
+  id: 11
+  name: 'pyramid'
+}
+item {
+  id: 12
+  name: 'boat'
+}
+item {
+  id: 13
+  name: 'hill'
+}

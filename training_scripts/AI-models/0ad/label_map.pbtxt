@@ -1,0 +1,76 @@
+item {
+  id: 1
+  name: 'OK'
+}
+item {
+  id: 2
+  name: 'single_player'
+}
+item {
+  id: 3
+  name: 'load_game'
+}
+item {
+  id: 4
+  name: 'load'
+}
+item {
+  id: 5
+  name: 'hunter'
+}
+item {
+  id: 6
+  name: 'farmer'
+}
+item {
+  id: 7
+  name: 'hoplite'
+}
+item {
+  id: 8
+  name: 'militia'
+}
+item {
+  id: 9
+  name: 'house'
+}
+item {
+  id: 10
+  name: 'deer'
+}
+item {
+  id: 11
+  name: 'tree'
+}
+item {
+  id: 12
+  name: 'bush'
+}
+item {
+  id: 13
+  name: 'stone'
+}
+item {
+  id: 14
+  name: 'knight'
+}
+item {
+  id: 15
+  name: 'enemy_center'
+}
+item {
+  id: 16
+  name: 'no'
+}
+item {
+  id: 17
+  name: 'water'
+}
+item {
+  id: 18
+  name: 'camera'
+}
+item {
+  id: 19
+  name: 'map'
+}

@@ -1,0 +1,12 @@
+item {
+  id: 1
+  name: 'init'
+}
+item {
+  id: 2
+  name: 'patient'
+}
+item {
+  id: 3
+  name: 'liver'
+}
