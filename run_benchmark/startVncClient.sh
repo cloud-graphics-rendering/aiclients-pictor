@@ -7,7 +7,7 @@ usage(){
      echo "Usage:"
      echo "*******************************************************************"
      echo "./startVncClient.sh GameName ServerIP VNCPort NumOfGames auto/human"
-     echo "	1) GameName  : supertuxkart, 0ad, redeclipse, dota2, inmindvr, imhotepvr"
+     echo "	1) GameName  : supertuxkart-1, supertuxkart, 0ad, redeclipse, dota2, inmindvr, imhotepvr"
      echo "	2) ServerIP  : IP address of VNC server" 
      echo "	3) VNCPort   : VNC port, starting from 5901" 
      echo "	4) NumOfGames: How many clients to run games simultaneously" 
