@@ -7,7 +7,7 @@ usage(){
      echo "Usage:"
      echo "*******************************************************************"
      echo "./collectData.sh GameName RecordFlag RunTime(s) BindCPU AutoOrHuman MultiMode"
-     echo "	1) GameNames  : supertuxkart-1, supertuxkart, 0ad, redeclipse, dota2, inmindvr, imhotepvr, nasawebvr, javaeclipse, libreoffice"
+     echo "	1) GameNames  : supertuxkart-1, supertuxkart, 0ad, redeclipse, dota2, inmindvr, imhotepvr"
      echo "	2) RecordFlag : 0 -- do not record metrics on server."
      echo "			1 -- record"
      echo "	3) RunTime(s) : How long to run the benchmark(seconds). Typically, stk, 0ad, dota2, imhotepvr: 900; redclipse: 600; inmindvr: 240"
