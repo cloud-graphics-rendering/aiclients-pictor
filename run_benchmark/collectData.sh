@@ -10,7 +10,7 @@ usage(){
      echo "	1) GameNames  : supertuxkart-1, supertuxkart, 0ad, redeclipse, dota2, inmindvr, imhotepvr, nasawebvr, javaeclipse, libreoffice"
      echo "	2) RecordFlag : 0 -- do not record metrics on server."
      echo "			1 -- record"
-     echo "	3) RunTime(s) : How long to run the benchmark(seconds)."
+     echo "	3) RunTime(s) : How long to run the benchmark(seconds). Typically, stk, 0ad, dota2, imhotepvr: 900; redclipse: 600; inmindvr: 240"
      echo "	4) BindCPU    : 0 -- donot bind python thread to specific cpu core"
      echo "			1 -- bind"
      echo "	5) AutoOrHuman: 0 -- AI Bots runs benchmark."
