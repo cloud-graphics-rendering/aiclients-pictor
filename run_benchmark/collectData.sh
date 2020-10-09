@@ -6,72 +6,68 @@
 usage(){
      echo "Usage:"
      echo "*******************************************************************"
-     echo "./collectData.sh GameName RecordFlag RunTime(s) BindCPU AutoOrHuman MultiMode"
-     echo "	1) GameNames  : supertuxkart-1, supertuxkart, 0ad, redeclipse, dota2, inmindvr, imhotepvr"
-     echo "	2) RecordFlag : 0 -- do not record metrics on server."
-     echo "			1 -- record"
-     echo "	3) RunTime(s) : How long to run the benchmark(seconds). Typically, stk, 0ad, dota2, imhotepvr: 900; redclipse: 600; inmindvr: 240"
-     echo "	4) BindCPU    : 0 -- donot bind python thread to specific cpu core"
+     echo "./collectData.sh GameName PerfFlag RunTime(s) BindCPU AutoOrHuman MultiMode"
+     echo "	1) GameName   : supertuxkart-1, supertuxkart, 0ad, redeclipse, dota2, inmindvr, imhotepvr"
+     echo "	2) ServerIP  : IP address of VNC server" 
+     echo "	3) VncPort   : VNC port, starting from 5901" 
+     echo "	4) TotalClients: How many clients to run games simultaneously: 1/2/3/4" 
+     echo "	5) AutoRun    : Run game automatically? 1 or 0"
+     echo "	6) Geometry  : 1920x1080 or 1280x720" 
+     echo "	7) BenchTime  : How long to run the benchmark(seconds). Typically, stk, dota2, imhotepvr: 900; 0ad: 600; redclipse: 450; inmindvr: 240"
+     echo "	8) PerfFlag   : 0 -- do NOT log metrics on server."
+     echo "		        1 -- log performance results on server"
+     echo "	9) BindCPU    : 0 -- donot bind python thread to specific cpu core"
      echo "			1 -- bind"
-     echo "	5) AutoOrHuman: 0 -- AI Bots runs benchmark."
-     echo "			1 -- Human runs benchmark"
-     echo "	6) MultiMode  : MultiMode means running multiple instances or not."
-     echo "                        0 -- Single Instance."
-     echo "                        1 -- run 1 game"
-     echo "                        2 -- run 2 games..."
-     echo "                        3 -- run 3 games..."
-     echo "                        4 -- run 4 games..."
-     echo "e.g: ./collectData.sh supertuxkart 1 100 0 0 0"
+     echo "e.g: ./collectData.sh supertuxkart 10.100.233.197 5901 1 1 1920x1080 100 1 0"
      exit 0
 }
-if [ $# -ne 6 ]; then
+if [ $# -ne 9 ]; then
 	usage
 fi
-APP_NAME=$1
-RecordFlag=$2
-RUNNING_TIME=$3
-BIND_CPU=$4
-HUMAN=$5
-MULTIPLE_MODE=$6
+EXPERIMENT_DATE=$(date +"%Y-%m-%d-%H-%M-%S")
 
-AI_BOTS_DIR=$(dirname `pwd`)
-Reso_Width=1920
-Reso_Hight=1080
-##########################################################
-if [ $MULTIPLE_MODE -ne 0 ] ; then
-    THEHOSTNAME=`cat /etc/hostname`
-    RESULT_DIR=`pwd`/result_client_cgr_nobind_auto_multi_${MULTIPLE_MODE}_${THEHOSTNAME}/$APP_NAME
-elif [ $BIND_CPU -eq 0 ] ; then
-    if [ $HUMAN -eq 0 ] ; then
-        RESULT_DIR=`pwd`/result_client_cgr_nobind_auto/$APP_NAME
-    else
-        RESULT_DIR=`pwd`/result_client_cgr_nobind_human/$APP_NAME
-    fi
+GAME_NAME=$1
+SERVER_IP=$2
+VNC_PORT=$3
+TOTAL_CLIENTS=$4
+AUTO_RUN=$5
+GEOMETRY=$6
+BENCH_TIME=$7
+PERF_FLAG=$8
+BIND_CPU=$9
+
+if [ $AUTO_RUN ]
+then
+HUMAN_RUN=0
 else
-    if [ $HUMAN -eq 0 ] ; then
-        RESULT_DIR=`pwd`/result_client_cgr_bind_auto/$APP_NAME
-    else
-        RESULT_DIR=`pwd`/result_client_cgr_bind_human/$APP_NAME
-    fi
+HUMAN_RUN=1
 fi
+
+WIDTH=$(echo $GEOMETRY | cut -dx -f1)
+HEIGHT=$(echo $GEOMETRY | cut -dx -f2)
+RESULT_DIR=`pwd`/result_client_cgr_multi_${TOTAL_CLIENTS}_${VNC_PORT}/$GAME_NAME
+AI_BOTS_DIR=$(dirname `pwd`)
 
 [ -e `dirname $RESULT_DIR` ] || mkdir `dirname $RESULT_DIR`
 [ -e $RESULT_DIR ] || mkdir $RESULT_DIR
-rm $RESULT_DIR/*
 
-case $APP_NAME in
+# writing metadata
+echo "Date,GameName,ServerIP,VncPort,TotalClients,AutoRun,Geomrtry,BenchTime,PerfFlag,BindCPU" > $RESULT_DIR/metadata.csv 
+echo "$EXPERIMENT_DATE,$GAME_NAME,$SERVER_IP,$VNC_PORT,$TOTAL_CLIENTS,$AUTO_RUN,$GEOMETRY,$BENCH_TIME,$PERF_FLAG,$BIND_CPU" >> $RESULT_DIR/metadata.csv
+
+case $GAME_NAME in
     supertuxkart | 0ad | redeclipse | dota2 | inmindvr | imhotepvr | nasawebvr | supertuxkart-demo )
         if [ $BIND_CPU -eq 0 ] ; then
-            python3 ../training_scripts/AI-play-${APP_NAME}.py $RecordFlag $RUNNING_TIME $AI_BOTS_DIR $RESULT_DIR $BIND_CPU $HUMAN $Reso_Width $Reso_Hight $MULTIPLE_MODE& echo $! > ./client.pid
+            python3 ../training_scripts/AI-play-${GAME_NAME}.py $PERF_FLAG $BENCH_TIME $AI_BOTS_DIR $RESULT_DIR $BIND_CPU $HUMAN_RUN $WIDTH $HEIGHT $TOTAL_CLIENTS& echo $! > ./.client.pid
         else
-            taskset 0x1 python3 ../training_scripts/AI-play-${APP_NAME}.py $RecordFlag $RUNNING_TIME $AI_BOTS_DIR $RESULT_DIR $BIND_CPU $HUMAN $Reso_Width $Reso_Hight $MULTIPLE_MODE& echo $! > ./client.pid
+            taskset 0x1 python3 ../training_scripts/AI-play-${GAME_NAME}.py $PERF_FLAG $BENCH_TIME $AI_BOTS_DIR $RESULT_DIR $BIND_CPU $HUMAN_RUN $WIDTH $HEIGHT $TOTAL_CLIENTS& echo $! > ./.client.pid
         fi
         ;;
     supertuxkart-1 )
         if [ $BIND_CPU -eq 0 ] ; then
-            python3 ../training_scripts/AI-play-supertuxkart-1.py $RecordFlag $RUNNING_TIME $AI_BOTS_DIR $RESULT_DIR $BIND_CPU $HUMAN $Reso_Width $Reso_Hight $MULTIPLE_MODE& echo $! > ./client.pid
+            python3 ../training_scripts/AI-play-supertuxkart-1.py $PERF_FLAG $BENCH_TIME $AI_BOTS_DIR $RESULT_DIR $BIND_CPU $HUMAN_RUN $WIDTH $HEIGHT $TOTAL_CLIENTS& echo $! > ./.client.pid
         else
-            taskset 0x1 python3 ../training_scripts/AI-play-supertuxkart-1.py $RecordFlag $RUNNING_TIME $AI_BOTS_DIR $RESULT_DIR $BIND_CPU $HUMAN $Reso_Width $Reso_Hight $MULTIPLE_MODE& echo $! > ./client.pid
+            taskset 0x1 python3 ../training_scripts/AI-play-supertuxkart-1.py $PERF_FLAG $BENCH_TIME $AI_BOTS_DIR $RESULT_DIR $BIND_CPU $HUMAN_RUN $WIDTH $HEIGHT $TOTAL_CLIENTS& echo $! > ./.client.pid
         fi
         ;;
 
@@ -80,16 +76,16 @@ case $APP_NAME in
         exit 0
         ;;
 esac
+sleep 2
 
-echo -en `ps -C java -o pid=` > ./VncClient.pid
-BotPID=`cat ./client.pid`
-VncClientPID=`cat ./VncClient.pid`
+BotPID=`cat ./.client.pid`
+VncClientPID=`cat ./.VncClient.pid`
 
 networkcards=`ifconfig | grep -P '^[^\s]+\s+[A-Z]' | awk '{print $1}'`
 echo $networkcards > $RESULT_DIR/networkcards_name.log
 
-COUNT=$RUNNING_TIME # number of records, RUNNING_TIME/2;
-echo "Running Time: $RUNNING_TIME seconds"
+COUNT=$BENCH_TIME # number of records, BENCH_TIME/2;
+echo "Running Time: $BENCH_TIME seconds"
 echo "Count: $COUNT"
 echo "running.."
 
@@ -101,7 +97,7 @@ while [ $num -gt 0 ]; do
     cat /proc/uptime >> $RESULT_DIR/proc_uptime.log                  		# For PID CPU
     cat /proc/net/dev >> $RESULT_DIR/proc_network_card.log           		# Network Card
     
-    if [ $HUMAN -eq 0 ] ; then
+    if [ $AUTO_RUN -eq 1 ] ; then
         cat /proc/$BotPID/stat >> $RESULT_DIR/proc_Bot_stat.log         		# Bot CPU Util
         cat /proc/$BotPID/status >> $RESULT_DIR/proc_Bot_status.log     		# Bot Memory Util
     fi
@@ -110,6 +106,6 @@ while [ $num -gt 0 ]; do
     sleep 1
     num=`expr $num - 1`
 done
-kill `cat ./client.pid`
+kill `cat ./.client.pid`
 echo "Done"
 
