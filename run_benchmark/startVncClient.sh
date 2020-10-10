@@ -36,7 +36,7 @@ RESULT_DIR=`pwd`/result_client_cgr_multi_${TOTAL_CLIENTS}_${VNC_PORT}/$GAME_NAME
 [ -e $RESULT_DIR ] || mkdir $RESULT_DIR
 rm $RESULT_DIR/*
 
-ssh lty@$SERVER_IP "/opt/TurboVNC/bin/vncserver -kill :$MYDISPLAY; /opt/TurboVNC/bin/vncserver -securitytypes None -geometry $GEOMETRY" && \
+ssh lty@$SERVER_IP "echo $GEOMETRY > ~/.vnc/geometry.cfg; /opt/TurboVNC/bin/vncserver -kill :$MYDISPLAY; /opt/TurboVNC/bin/vncserver -securitytypes None -geometry $GEOMETRY" && \
 echo "ssh lty@$SERVER_IP "/opt/TurboVNC/bin/vncserver -kill :$MYDISPLAY"" > ./.killVncSession.sh
                                                    
 /opt/TurboVNC/bin/vncviewer -DesktopSize Server $SERVER_IP:$VNC_PORT > $RESULT_DIR/RTT.log&
